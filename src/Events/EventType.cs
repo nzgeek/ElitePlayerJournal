@@ -4,110 +4,175 @@ using System;
 
 namespace NZgeek.ElitePlayerJournal.Events
 {
-    [JsonConverter(typeof(EventTypeConverter))]
+    /// <summary>
+    ///     Identifies all of the event types that may be present in the Elite Dangerous journal files.
+    /// </summary>
+    /// <remarks>
+    ///     The order of items here is based on the order they appear in the official journal manuals. Each section
+    ///     lists the events from version 6 of the manual first, then any new events from version 7, etc.
+    /// </remarks>
+    [JsonConverter(typeof(EnumConverter<EventType>))]
     public enum EventType
     {
         Unknown = 0,
 
-        FileHeader = 10,
+        // Section 2: File Format
+        FileHeader = 2000,
+
+        // Section 3: Startup
+        ClearSavedGame = 3000,
         NewCommander,
         LoadGame,
         Progress,
-        Location,
-
         Rank,
-        Promotion,
+        // v9
+        Cargo,
+        Loadout,
+        Materials,
+        // v10
+        Passengers,
 
-        Died,
-        Resurrect,
-
-        FSDJump = 100,
+        // Section 4: Travel
+        Docked = 4000,
+        DockingCancelled,
+        DockingDenied,
+        DockingGranted,
+        DockingRequested,
+        DockingTimeout,
+        FSDJump,
+        Liftoff,
+        Location,
         SupercruiseEntry,
         SupercruiseExit,
-        USSDrop,
-        ApproachSettlement,
-        DockingRequested,
-        DockingCancelled,
-        DockingGranted,
-        DockingDenied,
-        Docked,
-        Undocked,
         Touchdown,
-        Liftoff,
-        LaunchSRV,
-        DockSRV,
-        FuelScoop,
-        Scan,
+        Undocked,
+        // v9
+        StartJump,
 
-        MissionAccepted = 200,
-        MissionCompleted,
-        MissionAbandoned,
-        MissionFailed,
-        CommunityGoalJoin,
-        CommunityGoalReward,
-        Bounty,
+        // Section 5: Combat
+        Bounty = 5000,
+        CapShipBond,
+        Died,
+        EscapeInterdiction,
         FactionKillBond,
-        RedeemVoucher,
-        BuyExplorationData,
-        SellExplorationData,
+        HeatDamage,
+        HeatWarning,
+        HullDamage,
+        Interdicted,
+        Interdiction,
+        PVPKill,
+        ShieldState,
 
-        MarketBuy,
-        MarketSell,
-        CollectCargo,
-        EjectCargo,
-        MaterialDiscovered,
+        // Section 6: Exploration
+        Scan = 6000,
         MaterialCollected,
         MaterialDiscarded,
-        MiningRefined,
-        Synthesis,
+        MaterialDiscovered,
+        BuyExplorationData,
+        SellExplorationData,
+        Screenshot,
 
-        ShipyardNew,
-        ShipyardBuy,
-        ShipyardSwap,
-        ShipyardTransfer,
-        ShipyardSell,
+        // Section 7: Trade
+        BuyTradeData = 7000,
+        CollectCargo,
+        EjectCargo,
+        MarketBuy,
+        MarketSell,
+        MiningRefined,
+
+        // Section 8: Station Services
+        BuyAmmo = 8000,
+        BuyDrones,
+        CommunityGoalDiscard,
+        CommunityGoalJoin,
+        CommunityGoalReward,
+        CrewAssign,
+        CrewFire,
+        CrewHire,
+        EngineerApply,
+        EngineerCraft,
+        EngineerProgress,
+        FetchRemoteModule,
+        MassModuleStore,
+        MissionAbandoned,
+        MissionAccepted,
+        MissionCompleted,
+        MissionFailed,
         ModuleBuy,
+        ModuleRetrieve,
         ModuleSell,
         ModuleSellRemote,
         ModuleStore,
-        ModuleRetrieve,
-        FetchRemoteModule,
-
-        BuyAmmo,
-        RefuelAll,
-        RepairAll,
-        Repair,
-        BuyDrones,
-
-        EngineerProgress,
-        EngineerCraft,
-        EngineerApply,
-
-        DataScanned,
-        DatalinkScan,
-        DatalinkVoucher,
-
-        ReceiveText = 400,
-        SendText,
-        WingJoin,
-        WingAdd,
-        WingLeave,
-
-        Interdiction,
-        Interdicted,
-        EscapeInterdiction,
-
-        HullDamage,
-        ShieldState,
-        HeatWarning,
-        RebootRepair,
-        CockpitBreached,
-
-        CommitCrime,
+        ModuleSwap,
         PayFines,
         PayLegacyFines,
+        RedeemVoucher,
+        RefuelAll,
+        RefuelPartial,
+        Repair,
+        RepairAll,
+        RestockVehicle,
+        ScientificResearch,
+        SellDrones,
+        ShipyardBuy,
+        ShipyardNew,
+        ShipyardSell,
+        ShipyardTransfer,
+        ShipyardSwap,
+        // v9
+        SetUserShipName,
 
-        Screenshot = 10000,
+
+        // Section 9: Powerplay
+        PowerplayCollect = 9000,
+        PowerplayDefect,
+        PowerplayDeliver,
+        PowerplayFastTrack,
+        PowerplayJoin,
+        PowerplayLeave,
+        PowerplaySalary,
+        PowerplayVote,
+        PowerplayVoucher,
+
+        // Section 10: Other Events
+        ApproachSettlement = 10000,
+        CockpitBreached,
+        CommitCrime,
+        Continued,
+        DatalinkScan,
+        DatalinkVoucher,
+        DataScanned,
+        DockFighter,
+        DockSRV,
+        FuelScoop,
+        JetConeBoost,
+        JetConeDamage,
+        LaunchFighter,
+        LaunchSRV,
+        Promotion,
+        RebootRepair,
+        ReceiveText,
+        Resurrect,
+        SelfDestruct,
+        SendText,
+        Synthesis,
+        USSDrop,
+        VehicleSwitch,
+        WingAdd,
+        WingJoin,
+        WingLeave,
+        // v9
+        ChangeCrewRole,
+        CrewMemberJoins,
+        CrewMemberQuits,
+        JoinACrew,
+        KickCrewMember,
+        QuitACrew,
+        Scanned,
+        // v10
+        CrewLaunchFighter,
+        CrewMemberRoleChange,
+        EndCrewSession,
     }
 
     public static class EventTypeExtensions

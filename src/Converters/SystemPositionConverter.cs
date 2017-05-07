@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using NZgeek.ElitePlayerJournal.Types;
+using NZgeek.ElitePlayerJournal.Events.Types;
 using System;
 
 namespace NZgeek.ElitePlayerJournal.Converters

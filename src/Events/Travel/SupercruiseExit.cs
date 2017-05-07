@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace NZgeek.ElitePlayerJournal.Events
+namespace NZgeek.ElitePlayerJournal.Events.Travel
 {
     public class SupercruiseExit : SupercruiseEvent
     {
@@ -9,8 +9,7 @@ namespace NZgeek.ElitePlayerJournal.Events
         {
         }
 
-        [JsonProperty("Body")]
-        public string Body { get; set; }
+        public string Body => GetLocalisableText("Body");
 
         [JsonProperty("BodyType")]
         public string BodyType { get; set; }

@@ -2,7 +2,7 @@
 using System;
 using System.IO;
 
-namespace NZgeek.ElitePlayerJournal.Events
+namespace NZgeek.ElitePlayerJournal.Events.Exploration
 {
     public class Screenshot : Event
     {

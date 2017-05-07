@@ -70,8 +70,6 @@ namespace NZgeek.ElitePlayerJournal
                             continue;
 
                         var gameEvent = EventFactory.CreateEvent(this, lineNumber, eventData);
-                        JsonConvert.PopulateObject(eventData, gameEvent);
-
                         events.Add(gameEvent, gameEvent);
                     }
                 }

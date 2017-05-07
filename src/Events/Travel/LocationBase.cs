@@ -1,10 +1,11 @@
 ﻿using Newtonsoft.Json;
 
-namespace NZgeek.ElitePlayerJournal.Events
+namespace NZgeek.ElitePlayerJournal.Events.Travel
 {
-    public abstract class SystemEntryEvent : Event
+    [JsonObject(MemberSerialization.OptIn)]
+    public abstract class LocationBase : Event
     {
-        protected SystemEntryEvent(EventType eventType)
+        protected LocationBase(EventType eventType)
             : base(eventType)
         {
         }
@@ -18,14 +19,11 @@ namespace NZgeek.ElitePlayerJournal.Events
         [JsonProperty("SystemAllegiance")]
         public string SystemAllegiance { get; set; }
 
-        [JsonProperty("SystemEconomy_Localised")]
-        public string SystemEconomy { get; set; }
+        public string SystemEconomy => GetLocalisableText("SystemEconomy");
 
-        [JsonProperty("SystemGovernment_Localised")]
-        public string SystemGovernment { get; set; }
+        public string SystemGovernment => GetLocalisableText("SystemGovernment");
 
-        [JsonProperty("SystemSecurity_Localised")]
-        public string SystemSecurity { get; set; }
+        public string SystemSecurity => GetLocalisableText("SystemSecurity");
 
         [JsonProperty("SystemFaction")]
         public string SystemFaction { get; set; }

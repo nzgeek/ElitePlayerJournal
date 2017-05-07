@@ -1,8 +1,9 @@
 ﻿using Newtonsoft.Json;
 
-namespace NZgeek.ElitePlayerJournal.Events
+namespace NZgeek.ElitePlayerJournal.Events.Travel
 {
-    public class Location : SystemEntryEvent
+    [JsonObject(MemberSerialization.OptIn)]
+    public class Location : LocationBase
     {
         public Location()
             : base(EventType.Location)
@@ -18,8 +19,7 @@ namespace NZgeek.ElitePlayerJournal.Events
         [JsonProperty("StationType")]
         public string StationType { get; set; }
 
-        [JsonProperty("Body")]
-        public string Body { get; set; }
+        public string Body => GetLocalisableText("Body");
 
         [JsonProperty("BodyType")]
         public string BodyType { get; set; }

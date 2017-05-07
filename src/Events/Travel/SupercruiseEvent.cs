@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace NZgeek.ElitePlayerJournal.Events
+namespace NZgeek.ElitePlayerJournal.Events.Travel
 {
     public abstract class SupercruiseEvent : Event
     {
