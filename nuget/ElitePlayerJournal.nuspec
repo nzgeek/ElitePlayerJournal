@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>NZgeek.ElitePlayerJournal</id>
+    <version>0.1</version>
+    <title>Elite Dangerous Journal Parser</title>
+    <authors>Jamie Anderson</authors>
+    <owners>NZgeek</owners>
+    <description>A library for reading and parsing the Elite Dangerous player journal.</description>
+    <copyright>Copyright (c) 2017 Jamie Anderson</copyright>
+
+    <licenseUrl>https://github.com/nzgeek/ElitePlayerJournal/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/nzgeek/ElitePlayerJournal</projectUrl>
+    <iconUrl>https://github.com/nzgeek/ElitePlayerJournal/raw/master/icon.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+
+    <tags>Elite EliteDangerous Journal</tags>
+
+    <dependencies>
+      <dependency id="Newtonsoft.Json" version="9.0.1" />
+    </dependencies>
+  </metadata>
+  
+  <files>
+    <file src="bin\$Configuration$\**\NZgeek.ElitePlayerJournal.dll" target="lib\" />
+  </files>
+</package>
