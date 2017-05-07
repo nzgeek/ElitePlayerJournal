@@ -73,7 +73,16 @@ task RestorePackages {
 task UpdateVersionFiles {
     Get-ChildItem (Join-Path $sourceDir '**\AssemblyInfo.cs') |
         ForEach {
-            
+            $assemblyInfo = Get-Content $_
+            $assemblyInfo |
+                ForEach {
+                    $line = $_
+                    $line = $line -replace '(AssemblyVersion\s*\(\s*)".*"(\s*\))', "`$1`"$versionNumber`"`$2"
+                    $line = $line -replace '(AssemblyFileVersion\s*\(\s*)".*"(\s*\))', "`$1`"$versionNumber`"`$2"
+                    $line = $line -replace '(AssemblyInformationalVersion\s*\(\s*)".*"(\s*\))', "`$1`"$versionString`"`$2"
+                    $line
+                } |
+                Set-Content $_ -Encoding UTF8
         }
 }
 
