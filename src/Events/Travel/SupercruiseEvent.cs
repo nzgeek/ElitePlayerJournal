@@ -2,14 +2,9 @@
 
 namespace NZgeek.ElitePlayerJournal.Events.Travel
 {
-    public abstract class SupercruiseEvent : Event
+    public class SupercruiseEvent : Event, ISystemEvent
     {
-        protected SupercruiseEvent(EventType eventType)
-            : base(eventType)
-        {
-        }
-
         [JsonProperty("StarSystem")]
-        public string SystemName { get; set; }
+        public string SystemName { get; private set; }
     }
 }

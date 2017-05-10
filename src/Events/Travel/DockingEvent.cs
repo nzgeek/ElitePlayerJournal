@@ -5,6 +5,6 @@ namespace NZgeek.ElitePlayerJournal.Events.Travel
     public class DockingEvent : Event
     {
         [JsonProperty("StationName")]
-        public string StationName { get; set; }
+        public string StationName { get; private set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using NZgeek.ElitePlayerJournal.Converters;
 using System;
 using System.Collections.Generic;
 
@@ -9,14 +10,8 @@ namespace NZgeek.ElitePlayerJournal.Events
     public class Event : EventBase, IComparable<Event>
     {
         public Event()
-            : this(EventType.Unknown)
-        {
-        }
-
-        protected Event(EventType eventType)
         {
             Timestamp = DateTime.UtcNow;
-            RawType = eventType.ToString();
             UnmappedValues = new Dictionary<string, JToken>();
         }
 
@@ -27,14 +22,14 @@ namespace NZgeek.ElitePlayerJournal.Events
         public Journal Journal => JournalFile?.Journal;
 
         [JsonProperty(PropertyName = "timestamp")]
-        public DateTime Timestamp { get; set; }
+        public DateTime Timestamp { get; private set; }
 
         [JsonExtensionData]
         protected IDictionary<string, JToken> UnmappedValues { get; }
 
         public override string ToString() => Type == EventType.Unknown
-            ? $"[{Timestamp:yyyyMMdd-HHmmss}] <<{RawType}>>"
-            : $"[{Timestamp:yyyyMMdd-HHmmss}] {Type}";
+            ? $"[{Timestamp:yyyy'-'MM'-'dd' 'HH':'mm':'ss}] <<{RawType}>>"
+            : $"[{Timestamp:yyyy'-'MM'-'dd' 'HH':'mm':'ss}] {Type}";
 
         public int CompareTo(Event other)
         {
@@ -49,10 +44,10 @@ namespace NZgeek.ElitePlayerJournal.Events
             return Comparer<EventType>.Default.Compare(Type, other.Type);
         }
 
-        public void LoadJson(string json)
+        internal void LoadJson(string json, JsonSerializerSettings settings)
         {
             UnmappedValues.Clear();
-            JsonConvert.PopulateObject(json, this);
+            JsonConvert.PopulateObject(json, this, settings);
         }
 
         protected string GetLocalisableText(string key)

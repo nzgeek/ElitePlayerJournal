@@ -6,18 +6,18 @@ namespace NZgeek.ElitePlayerJournal.Events.Types
     public class PassengerManifest
     {
         [JsonProperty("MissionID")]
-        public string MissionId { get; set; }
+        public string MissionId { get; private set; }
 
         [JsonProperty("Type")]
-        public string Type { get; set; }
+        public string Type { get; private set; }
 
         [JsonProperty("VIP")]
-        public bool IsVip { get; set; }
+        public bool IsVip { get; private set; }
 
         [JsonProperty("Wanted")]
-        public bool IsWanted { get; set; }
+        public bool IsWanted { get; private set; }
 
         [JsonProperty("Count")]
-        public int Passengers { get; set; }
+        public int Passengers { get; private set; }
     }
 }

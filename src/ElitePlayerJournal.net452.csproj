@@ -40,10 +40,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converters\EnumConverter.cs" />
-    <Compile Include="Converters\EventTypeConverter.cs" />
     <Compile Include="Converters\SystemPositionConverter.cs" />
     <Compile Include="EventFactory.cs" />
+    <Compile Include="Events\Combat\BondAward.cs" />
+    <Compile Include="Events\Combat\BountyAward.cs" />
     <Compile Include="Events\EventBase.cs" />
+    <Compile Include="Events\ISystemEvent.cs" />
     <Compile Include="Events\Other\ReceiveText.cs" />
     <Compile Include="Events\Other\SendText.cs" />
     <Compile Include="Events\Startup\Cargo.cs" />
@@ -62,12 +64,16 @@
     <Compile Include="Events\Travel\DockingGranted.cs" />
     <Compile Include="Events\Travel\DockingDenied.cs" />
     <Compile Include="Events\Travel\FrameShiftJump.cs" />
+    <Compile Include="Events\Travel\PlanetaryEvent.cs" />
     <Compile Include="Events\Travel\Location.cs" />
     <Compile Include="Events\Travel\LocationBase.cs" />
+    <Compile Include="Events\Travel\StartJump.cs" />
     <Compile Include="Events\Travel\SupercruiseEvent.cs" />
     <Compile Include="Events\Travel\SupercruiseExit.cs" />
+    <Compile Include="Events\Types\FactionReward.cs" />
     <Compile Include="Events\Types\GameMode.cs" />
     <Compile Include="Events\Types\InventoryItem.cs" />
+    <Compile Include="Events\Types\JumpType.cs" />
     <Compile Include="Events\Types\PassengerManifest.cs" />
     <Compile Include="Events\Types\ShipModule.cs" />
     <Compile Include="Events\Types\SystemFaction.cs" />
@@ -83,7 +89,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Events\Combat\" />
     <Folder Include="Events\Powerplay\" />
     <Folder Include="Events\StationServices\" />
     <Folder Include="Events\Trade\" />

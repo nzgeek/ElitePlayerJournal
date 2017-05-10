@@ -6,25 +6,20 @@ namespace NZgeek.ElitePlayerJournal.Events.Exploration
 {
     public class Screenshot : Event
     {
-        public Screenshot()
-            : base(EventType.Screenshot)
-        {
-        }
-
         [JsonProperty("Filename")]
-        public string RawFileName { get; set; }
+        public string RawFileName { get; private set; }
 
         [JsonProperty("Width")]
-        public int Width { get; set; }
+        public int Width { get; private set; }
 
         [JsonProperty("Height")]
-        public int Height { get; set; }
+        public int Height { get; private set; }
 
         [JsonProperty("System")]
-        public string SystemName { get; set; }
+        public string SystemName { get; private set; }
 
         [JsonProperty("Body")]
-        public string Body { get; set; }
+        public string Body { get; private set; }
 
         public string FileName => Path.GetFileName(RawFileName);
 

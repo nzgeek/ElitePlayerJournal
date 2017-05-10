@@ -6,6 +6,6 @@ namespace NZgeek.ElitePlayerJournal.Events.Startup
     public class Cargo : Event
     {
         [JsonProperty("Inventory")]
-        public InventoryItem[] Inventory { get; set; }
+        public InventoryItem[] Inventory { get; private set; }
     }
 }

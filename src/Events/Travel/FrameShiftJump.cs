@@ -1,26 +1,17 @@
 ﻿using Newtonsoft.Json;
-using NZgeek.ElitePlayerJournal.Events.Types;
 
 namespace NZgeek.ElitePlayerJournal.Events.Travel
 {
     public class FrameShiftJump : LocationBase
     {
-        public FrameShiftJump()
-            : base(EventType.FSDJump)
-        {
-        }
-
         [JsonProperty("JumpDist")]
-        public decimal Distance { get; set; }
+        public decimal Distance { get; private set; }
 
         [JsonProperty("FuelUsed")]
-        public decimal FuelUsed { get; set; }
+        public decimal FuelUsed { get; private set; }
 
         [JsonProperty("FuelLevel")]
-        public decimal FuelLevel { get; set; }
-
-        [JsonProperty("Factions")]
-        public SystemFaction[] Factions { get; set; }
+        public decimal FuelLevel { get; private set; }
 
         public override string ToString() => $"{base.ToString()} => {Distance}Ly ({FuelUsed}T fuel used, {FuelLevel}T remaining)";
     }

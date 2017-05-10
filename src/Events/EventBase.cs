@@ -6,17 +6,12 @@ namespace NZgeek.ElitePlayerJournal.Events
     public class EventBase
     {
         public EventBase()
-            : this(EventType.Unknown)
         {
-        }
-
-        public EventBase(EventType eventType)
-        {
-            RawType = eventType.ToString();
+            RawType = nameof(EventType.Unknown);
         }
 
         [JsonProperty(PropertyName = "event")]
-        public string RawType { get; set; }
+        public string RawType { get; internal set; }
 
         public EventType Type
         {

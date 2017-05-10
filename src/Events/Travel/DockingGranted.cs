@@ -5,6 +5,6 @@ namespace NZgeek.ElitePlayerJournal.Events.Travel
     public class DockingGranted : DockingEvent
     {
         [JsonProperty("LandingPad")]
-        public int LandingPad { get; set; }
+        public int LandingPad { get; private set; }
     }
 }

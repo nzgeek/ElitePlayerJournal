@@ -2,19 +2,19 @@
 
 namespace NZgeek.ElitePlayerJournal.Events.Travel
 {
-    public class Docked : DockingEvent
+    public class Docked : DockingEvent, ISystemEvent
     {
         [JsonProperty("StarSystem")]
-        public string SystemName { get; set; }
+        public string SystemName { get; private set; }
 
         [JsonProperty("StationType")]
-        public string StationType { get; set; }
+        public string StationType { get; private set; }
 
         [JsonProperty("StationFaction")]
-        public string StationFaction { get; set; }
+        public string StationFaction { get; private set; }
 
         [JsonProperty("FactionState")]
-        public string StationFactionState { get; set; }
+        public string StationFactionState { get; private set; }
 
         public string StationAllegiance => GetLocalisableText("StationAllegiance");
 
@@ -23,9 +23,9 @@ namespace NZgeek.ElitePlayerJournal.Events.Travel
         public string StationGovernment => GetLocalisableText("StationGovernment");
 
         [JsonProperty("DistFromStarLS")]
-        public decimal DistanceFromStar { get; set; }
+        public decimal DistanceFromStar { get; private set; }
 
         [JsonProperty("CockpitBreach")]
-        public bool IsCanopyBreached { get; set; }
+        public bool IsCanopyBreached { get; private set; }
     }
 }

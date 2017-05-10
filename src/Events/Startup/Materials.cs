@@ -6,12 +6,12 @@ namespace NZgeek.ElitePlayerJournal.Events.Startup
     public class Materials : Event
     {
         [JsonProperty("Raw")]
-        public InventoryItem[] RawMaterials { get; set; }
+        public InventoryItem[] RawMaterials { get; private set; }
 
         [JsonProperty("Manufactured")]
-        public InventoryItem[] ManufacturedMaterials { get; set; }
+        public InventoryItem[] ManufacturedMaterials { get; private set; }
 
         [JsonProperty("Encoded")]
-        public InventoryItem[] Data { get; set; }
+        public InventoryItem[] Data { get; private set; }
     }
 }

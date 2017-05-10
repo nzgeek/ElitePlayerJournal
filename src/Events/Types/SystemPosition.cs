@@ -9,20 +9,27 @@ namespace NZgeek.ElitePlayerJournal.Events.Types
     [JsonConverter(typeof(SystemPositionConverter))]
     public class SystemPosition
     {
+        internal SystemPosition(decimal x, decimal y, decimal z)
+        {
+            X = x;
+            Y = y;
+            Z = z;
+        }
+
         /// <summary>
         ///     The X coordinate of the system.
         /// </summary>
-        public decimal X { get; set; }
+        public decimal X { get; }
 
         /// <summary>
         ///     The Y coordinate of the system.
         /// </summary>
-        public decimal Y { get; set; }
+        public decimal Y { get; }
 
         /// <summary>
         ///     The Z coordinate of the system.
         /// </summary>
-        public decimal Z { get; set; }
+        public decimal Z { get; }
 
         /// <summary>
         ///     A display value for this object.

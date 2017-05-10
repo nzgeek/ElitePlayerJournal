@@ -6,6 +6,6 @@ namespace NZgeek.ElitePlayerJournal.Events.Startup
     public class Passengers : Event
     {
         [JsonProperty("Manifest")]
-        public PassengerManifest[] Missions { get; set; }
+        public PassengerManifest[] Missions { get; private set; }
     }
 }

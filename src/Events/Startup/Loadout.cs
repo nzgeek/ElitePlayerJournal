@@ -6,18 +6,18 @@ namespace NZgeek.ElitePlayerJournal.Events.Startup
     public class Loadout : Event
     {
         [JsonProperty("Ship")]
-        public string ShipType { get; set; }
+        public string ShipType { get; private set; }
 
         [JsonProperty("ShipID")]
-        public int ShipId { get; set; }
+        public int ShipId { get; private set; }
 
         [JsonProperty("ShipName")]
-        public string ShipName { get; set; }
+        public string ShipName { get; private set; }
 
         [JsonProperty("ShipIdent")]
-        public string ShipIdent { get; set; }
+        public string ShipIdent { get; private set; }
 
         [JsonProperty("Modules")]
-        public ShipModule[] Modules { get; set; }
+        public ShipModule[] Modules { get; private set; }
     }
 }

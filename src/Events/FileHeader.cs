@@ -4,22 +4,17 @@ namespace NZgeek.ElitePlayerJournal.Events
 {
     public class FileHeader : Event
     {
-        public FileHeader()
-            : base(EventType.FileHeader)
-        {
-        }
-
         [JsonProperty("part")]
-        public int Part { get; set; }
+        public int Part { get; private set; }
 
         [JsonProperty("language")]
-        public string Language { get; set; }
+        public string Language { get; private set; }
 
         [JsonProperty("gameversion")]
-        public string GameVersion { get; set; }
+        public string GameVersion { get; private set; }
 
         [JsonProperty("build")]
-        public string Build { get; set; }
+        public string Build { get; private set; }
 
         public override string ToString() => $"{base.ToString()} => {Language} / {GameVersion} build {Build}";
     }

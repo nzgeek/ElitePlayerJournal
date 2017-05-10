@@ -23,12 +23,7 @@ namespace NZgeek.ElitePlayerJournal.Converters
             if (!reader.Read() || reader.TokenType != JsonToken.EndArray)
                 throw new FormatException("Position is not in the expected format.");
 
-            return new SystemPosition
-            {
-                X = x,
-                Y = y,
-                Z = z,
-            };
+            return new SystemPosition(x, y, z);
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)

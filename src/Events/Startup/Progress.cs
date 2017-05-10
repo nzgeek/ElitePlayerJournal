@@ -5,21 +5,21 @@ namespace NZgeek.ElitePlayerJournal.Events.Startup
     public class Progress : Event
     {
         [JsonProperty("Combat")]
-        public int Combat { get; set; }
+        public int Combat { get; private set; }
 
         [JsonProperty("Trade")]
-        public int Trade { get; set; }
+        public int Trade { get; private set; }
 
         [JsonProperty("Explore")]
-        public int Exploration { get; set; }
+        public int Exploration { get; private set; }
 
         [JsonProperty("Empire")]
-        public int Empire { get; set; }
+        public int Empire { get; private set; }
 
         [JsonProperty("Federation")]
-        public int Federation { get; set; }
+        public int Federation { get; private set; }
 
         [JsonProperty("CQC")]
-        public int CQC { get; set; }
+        public int CQC { get; private set; }
     }
 }
