@@ -43,6 +43,7 @@ namespace NZgeek.ElitePlayerJournal
         public static Event CreateEvent(JournalFile journalFile, int lineNumber, string eventData)
         {
             var basicEvent = JsonConvert.DeserializeObject<EventBase>(eventData);
+            if (basicEvent == null) return null; // This happens when the log file contains bad data or has nulls at EOF.
 
             var resultEvent = CreateEvent(journalFile, lineNumber, basicEvent.Type);
             resultEvent.LoadJson(eventData);
