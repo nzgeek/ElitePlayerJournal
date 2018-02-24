@@ -42,7 +42,19 @@ namespace NZgeek.ElitePlayerJournal
 
         public static Event CreateEvent(JournalFile journalFile, int lineNumber, string eventData)
         {
-            var basicEvent = JsonConvert.DeserializeObject<EventBase>(eventData);
+            EventBase basicEvent;
+            try
+            {
+                basicEvent = JsonConvert.DeserializeObject<EventBase>(eventData);
+            }
+            catch (JsonReaderException)
+            {
+                // Can occur if the line of JSON is corrupt or incomplete, not sure why this happens but it does :-(
+                // Ignore this line and carry on.
+                Console.WriteLine("    WARNING: Corrupt JSON line detected, skipping. " + eventData);
+                return null;
+            }
+
             if (basicEvent == null) return null; // This happens when the log file contains bad data or has nulls at EOF.
 
             var resultEvent = CreateEvent(journalFile, lineNumber, basicEvent.Type);
