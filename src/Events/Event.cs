@@ -52,7 +52,19 @@ namespace NZgeek.ElitePlayerJournal.Events
         public void LoadJson(string json)
         {
             UnmappedValues.Clear();
-            JsonConvert.PopulateObject(json, this);
+            try
+            {
+                JsonConvert.PopulateObject(json, this);
+            }
+            catch (JsonSerializationException ex)
+            {
+                if (ex.InnerException is ArgumentException && ex.InnerException.Message == "An item with the same key has already been added.")
+                {
+                    Console.WriteLine("    WARNING: JSON with two or more blanked keyed properties detected. " + json);
+                    return;
+                }
+                throw;
+            }
         }
 
         protected string GetLocalisableText(string key)

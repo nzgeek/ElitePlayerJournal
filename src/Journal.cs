@@ -16,6 +16,9 @@ namespace NZgeek.ElitePlayerJournal
 
             var pictures = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             ScreenShotFolder = Path.Combine(pictures, "Frontier Developments", "Elite Dangerous");
+
+            Console.WriteLine("Journal Folder:    " + JournalFolder);
+            Console.WriteLine("Screenshot Folder: " + ScreenShotFolder);
         }
 
         public string JournalFolder { get; set; }
@@ -52,8 +55,10 @@ namespace NZgeek.ElitePlayerJournal
         {
             if (eventTypes == null) throw new ArgumentNullException(nameof(eventTypes));
 
+            Console.WriteLine("Action: Find events - " + string.Join(", ", eventTypes));
             foreach (var journalFile in _journalFiles)
             {
+                Console.WriteLine("    searching " + journalFile.File.Name);
                 var firstPossibleEvent = journalFile.GameStarted;
                 var lastPossibleEvent = firstPossibleEvent + TimeSpan.FromDays(1);
 
