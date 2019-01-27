@@ -11,7 +11,7 @@ namespace NZgeek.ElitePlayerJournal.Events.Travel
         public decimal FuelUsed { get; private set; }
 
         [JsonProperty("FuelLevel")]
-        public decimal FuelLevel { get; private set; }
+        public decimal FuelLevel { get; set; }
 
         public override string ToString() => $"{base.ToString()} => {Distance}Ly ({FuelUsed}T fuel used, {FuelLevel}T remaining)";
     }

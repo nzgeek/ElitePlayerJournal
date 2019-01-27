@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using NZgeek.ElitePlayerJournal.Events.Types;
 
 namespace NZgeek.ElitePlayerJournal.Events.Travel
 {
@@ -20,15 +19,6 @@ namespace NZgeek.ElitePlayerJournal.Events.Travel
         public string SystemGovernment => GetLocalisableText("SystemGovernment");
 
         public string SystemSecurity => GetLocalisableText("SystemSecurity");
-
-        [JsonProperty("SystemFaction")]
-        public string SystemFaction { get; private set; }
-
-        [JsonProperty("FactionState")]
-        public string SystemFactionState { get; private set; }
-
-        [JsonProperty("Factions")]
-        public SystemFaction[] Factions { get; private set; }
 
         public override string ToString() => $"{base.ToString()} @ {SystemName}";
     }
