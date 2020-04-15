@@ -10,12 +10,6 @@ namespace NZgeek.ElitePlayerJournal.Events.Travel
         [JsonProperty("StationType")]
         public string StationType { get; private set; }
 
-        [JsonProperty("StationFaction")]
-        public string StationFaction { get; private set; }
-
-        [JsonProperty("FactionState")]
-        public string StationFactionState { get; private set; }
-
         public string StationAllegiance => GetLocalisableText("StationAllegiance");
 
         public string StationEconomy => GetLocalisableText("StationEconomy");

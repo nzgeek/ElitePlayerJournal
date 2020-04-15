@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using NZgeek.ElitePlayerJournal.Converters;
 using System;
 using System.Collections.Generic;
 
@@ -10,8 +9,14 @@ namespace NZgeek.ElitePlayerJournal.Events
     public class Event : EventBase, IComparable<Event>
     {
         public Event()
+            : this(EventType.Unknown)
+        {
+        }
+
+        protected Event(EventType eventType)
         {
             Timestamp = DateTime.UtcNow;
+            RawType = eventType.ToString();
             UnmappedValues = new Dictionary<string, JToken>();
         }
 
@@ -22,14 +27,14 @@ namespace NZgeek.ElitePlayerJournal.Events
         public Journal Journal => JournalFile?.Journal;
 
         [JsonProperty(PropertyName = "timestamp")]
-        public DateTime Timestamp { get; private set; }
+        public DateTime Timestamp { get; set; }
 
         [JsonExtensionData]
         protected IDictionary<string, JToken> UnmappedValues { get; }
 
         public override string ToString() => Type == EventType.Unknown
-            ? $"[{Timestamp:yyyy'-'MM'-'dd' 'HH':'mm':'ss}] <<{RawType}>>"
-            : $"[{Timestamp:yyyy'-'MM'-'dd' 'HH':'mm':'ss}] {Type}";
+            ? $"[{Timestamp:yyyyMMdd-HHmmss}] <<{RawType}>>"
+            : $"[{Timestamp:yyyyMMdd-HHmmss}] {Type}";
 
         public int CompareTo(Event other)
         {
@@ -44,10 +49,22 @@ namespace NZgeek.ElitePlayerJournal.Events
             return Comparer<EventType>.Default.Compare(Type, other.Type);
         }
 
-        internal void LoadJson(string json, JsonSerializerSettings settings)
+        public void LoadJson(string json)
         {
             UnmappedValues.Clear();
-            JsonConvert.PopulateObject(json, this, settings);
+            try
+            {
+                JsonConvert.PopulateObject(json, this);
+            }
+            catch (JsonSerializationException ex)
+            {
+                if (ex.InnerException is ArgumentException && ex.InnerException.Message == "An item with the same key has already been added.")
+                {
+                    Console.WriteLine("    WARNING: JSON with two or more blanked keyed properties detected. " + json);
+                    return;
+                }
+                throw;
+            }
         }
 
         protected string GetLocalisableText(string key)
